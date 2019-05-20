@@ -17,9 +17,10 @@ public class Map {
     private int money;
     private Trigger trigger;
     private static final String TAG = "MyApp";
-    ArrayList<TowerLand> towerLands;
+    private ArrayList<TowerLand> towerLands;
+    private ArrayList<ArrayList<Enemy>> enemiesvave;
 
-    public Map(Bitmap bitmap, int x, int y,ArrayList<TowerLand> towerLands,int lives,int money,Trigger trigger) {
+    public Map(Bitmap bitmap, int x, int y, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave) {
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
@@ -27,9 +28,12 @@ public class Map {
         this.lives=lives;
         this.money=money;
         this.trigger=trigger;
+        this.enemiesvave=enemiesvave;
 
         Log.i(TAG,x+" "+y);
     }
+    public void setEnemiesvave(ArrayList<ArrayList<Enemy>> enemiesvave) {this.enemiesvave = enemiesvave;}
+    public ArrayList<ArrayList<Enemy>> getEnemiesvave() {return enemiesvave;}
     public Bitmap getBitmap() { return bitmap; }
     public int getX() { return x; }
     public int getY() { return y; }
