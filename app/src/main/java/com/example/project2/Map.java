@@ -15,12 +15,14 @@ public class Map {
     private int y;
     private int lives;
     private int money;
+    private int i;
     private Trigger trigger;
     private static final String TAG = "MyApp";
     private ArrayList<TowerLand> towerLands;
     private ArrayList<ArrayList<Enemy>> enemiesvave;
+    private ArrayList<Rotatepoints> rotatepoints;
 
-    public Map(Bitmap bitmap, int x, int y, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave) {
+    public Map(Bitmap bitmap, int x, int y, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) {
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
@@ -29,6 +31,8 @@ public class Map {
         this.money=money;
         this.trigger=trigger;
         this.enemiesvave=enemiesvave;
+        this.rotatepoints=rotatepoints;
+         i=0;
 
         Log.i(TAG,x+" "+y);
     }
@@ -58,6 +62,18 @@ public class Map {
         canvas.drawText(money+"",bitmap.getWidth()-200,60,paint);
     }
     public void Road(Enemy enemy){
+        for (Rotatepoints r:rotatepoints) {
+            if(r.Rotate(enemy)){
+                Log.i(TAG,enemy.getSpeed()+"");
+                enemy.getSpeed().rotate(enemy.getSpeedmax(),r.getDirection());
+        }
+        if ((enemy.getX()>(bitmap.getWidth())+enemy.getBitmap().getWidth())){
+                enemy.setWin(true);
+                }
+
+    }
+    }
+    /*public void Road(Enemy enemy){
         if ((enemy.getX()>400) && (enemy.getY()>=100)&&(enemy.getY()<500)){
             enemy.getSpeed().rotateDown(enemy.getSpeedmax());
         }
@@ -75,5 +91,5 @@ public class Map {
             enemy.setWin(true);
 
         }
-    }
+    }*/
 }

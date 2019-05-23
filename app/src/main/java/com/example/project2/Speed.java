@@ -31,10 +31,13 @@ public class Speed {
     }
     public void toggleXDirection() { xv = -xv; }
     public void toggleYDirection() { yv=-yv; }
-    public void rotateLeft(int speedmax){ yv=0;xv=-speedmax; }
-    public void rotateRight(int speedmax){ yv=0;xv=speedmax; }
-    public void rotateDown(int speedmax){ yv=speedmax;xv=0; }
-    public void rotateUp(int speedmax){ yv=-speedmax;xv=0; }
+    public void rotate(int speedmax,String direction){
+        if (direction=="u"){ yv=-speedmax;xv=0; }
+        if (direction=="l"){ yv=0;xv=-speedmax; }
+        if (direction=="r"){ yv=0;xv=speedmax; }
+        if (direction=="d"){ yv=speedmax;xv=0; }
+        }
+
 
 
 

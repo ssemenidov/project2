@@ -15,6 +15,7 @@ public class LevelActivity extends AppCompatActivity {
     private Map map;
     private ArrayList<TowerLand> towerLands;
     private ArrayList<ArrayList<Enemy>> enemiesvave;
+    private  ArrayList<Rotatepoints> rotatepoints;
     ArrayList<Map> maps;
     Bundle arguments ;
 
@@ -27,6 +28,11 @@ public class LevelActivity extends AppCompatActivity {
          arguments = getIntent().getExtras();
          maps=new ArrayList<>();
         towerLands=new ArrayList<>();
+        rotatepoints=new ArrayList<>();
+        rotatepoints.add(new Rotatepoints(400,100,"d"));
+        rotatepoints.add(new Rotatepoints(400,500,"l"));
+        rotatepoints.add(new Rotatepoints(100,500,"d"));
+        rotatepoints.add(new Rotatepoints(100,900,"r"));
         towerLands.add(new TowerLand( view.getContext(),260, 700));
         towerLands.add(new TowerLand( view.getContext(), 220, 300));
         towerLands.add(new TowerLand( view.getContext(),530, 740));
@@ -40,8 +46,8 @@ public class LevelActivity extends AppCompatActivity {
             enemiesvave.get(0).add(new Enemy1(view.getContext(),-90*i,100));
             enemiesvave.get(1).add(new Enemy1(view.getContext(),-90*i,100));}
         Log.i(TAG,towerLands.size()+"tower");
-        map = new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2), 720, 1048, false)
-        ,0 , 0 ,towerLands,30,250,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 50, 50, false)),enemiesvave);
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2), 720, 1048, false)
+        ,0 , 0 ,towerLands,30,250,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 50, 50, false)),enemiesvave,rotatepoints));
         arguments.getInt("level");
         map= maps.get(arguments.getInt("level")-1);
         view.setMap(map);
