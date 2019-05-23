@@ -61,6 +61,7 @@ public class Map {
         canvas.drawText(lives+"",bitmap.getWidth()-60,60,paint);
         canvas.drawText(money+"",bitmap.getWidth()-200,60,paint);
     }
+
     public void Road(Enemy enemy){
         for (Rotatepoints r:rotatepoints) {
             if(r.Rotate(enemy)){
