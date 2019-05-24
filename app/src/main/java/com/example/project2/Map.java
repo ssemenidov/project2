@@ -22,10 +22,10 @@ public class Map {
     private ArrayList<ArrayList<Enemy>> enemiesvave;
     private ArrayList<Rotatepoints> rotatepoints;
 
-    public Map(Bitmap bitmap, int x, int y, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) {
+    public Map(Bitmap bitmap, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) {
         this.bitmap = bitmap;
-        this.x = x;
-        this.y = y;
+        this.x = 0;
+        this.y = 0;
         this.towerLands=towerLands;
         this.lives=lives;
         this.money=money;
