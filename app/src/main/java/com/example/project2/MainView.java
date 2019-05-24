@@ -157,17 +157,24 @@ public class MainView extends SurfaceView implements
             if ((Math.sqrt(
                     Math.pow(((tower.getX()) - (enemy.getX())), 2) +
                             Math.pow((tower.getY() - enemy.getY()), 2))
-                    < tower.getR()) && (enemy.gethp() > 0)&&(now > (tower.getLasthit() + 800L))) {
+                    < tower.getR()) && (enemy.gethp() > 0)&&(now > (tower.getLasthit() + 800L))&&(!tower.getArrow().isFly())) {
                 if (enemy.gethp()>0){
                     tower.getArrow().setX(tower.getX());
                     tower.getArrow().setY(tower.getY());
                     tower.getArrow().setEnemy(enemy);
                     tower.getArrow().setFly(true);
-                    enemy.sethp(enemy.gethp() - tower.getDamage());}
 
+                }
                 tower.setLasthit(now);
-            } }
-    tower.getArrow().update();
+            }
+
+        }
+        if (tower.getArrow().isHit()){
+            tower.getArrow().getEnemy().sethp(tower.getArrow().getEnemy().gethp() - tower.getDamage());
+            tower.getArrow().setHit(false);
+            Log.i(TAG,"hit");
+        }
+        tower.getArrow().update();
     }
 
     public void updateenemy(Enemy enemy) {
@@ -191,8 +198,7 @@ public class MainView extends SurfaceView implements
 
         for (Tower j:towers) {
             j.draw(canvas);
-            if (j.getArrow().isFly()){
-        j.getArrow().draw(canvas);}}
+            j.getArrow().draw(canvas);}
 
         for (TowerLand i:map.getTowerLands()) {
             if (i.getTouched()>-1){

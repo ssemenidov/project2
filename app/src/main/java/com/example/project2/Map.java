@@ -34,7 +34,7 @@ public class Map {
         this.rotatepoints=rotatepoints;
          i=0;
 
-        Log.i(TAG,x+" "+y);
+
     }
     public void setEnemiesvave(ArrayList<ArrayList<Enemy>> enemiesvave) {this.enemiesvave = enemiesvave;}
     public ArrayList<ArrayList<Enemy>> getEnemiesvave() {return enemiesvave;}
@@ -65,7 +65,6 @@ public class Map {
     public void Road(Enemy enemy){
         for (Rotatepoints r:rotatepoints) {
             if(r.Rotate(enemy)){
-                Log.i(TAG,enemy.getSpeed()+"");
                 enemy.getSpeed().rotate(enemy.getSpeedmax(),r.getDirection());
         }
         if ((enemy.getX()>(bitmap.getWidth())+enemy.getBitmap().getWidth())){

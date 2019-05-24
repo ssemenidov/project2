@@ -23,7 +23,7 @@ public class Rotatepoints {
 
         if (((enemy.getX()<(x+5))&&(enemy.getX()>(x-5)))&&
         ((enemy.getY()<(y+5))&&(enemy.getY()>(y-5)))){
-            Log.i(TAG,enemy.getX()+" "+enemy.getY());
+
 
             return  true;
         }

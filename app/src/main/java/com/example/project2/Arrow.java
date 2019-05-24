@@ -7,46 +7,56 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.util.Log;
 
+import java.util.Vector;
+
 public class Arrow {
     private static final String TAG = "MyApp";
     private Enemy enemy;
-    private Speed speed;
     private float x;
     private float y;
     private boolean isFly;
+    private boolean isHit;
+    private boolean isMiss;
      private Bitmap bitmap;
    public Enemy getEnemy() {return enemy;}
-   public Speed getSpeed() {return speed;}
    public float getX() {return x;}
    public float getY() {return y;}
    public boolean isFly() {return isFly;}
+    public boolean isHit() {return isHit;}
    public Bitmap getBitmap() {return bitmap;}
    public void setEnemy(Enemy enemy) {this.enemy = enemy;}
-   public void setSpeed(Speed speed) {this.speed = speed;}
    public void setX(float x) {this.x = x;}
    public void setY(float y) {this.y = y;}
    public void setFly(boolean fly) {isFly = fly;}
+    public void setHit(boolean hit) {isHit = hit;}
    public void setBitmap(Bitmap bitmap) {this.bitmap = bitmap;}
 
 
     public Arrow(Context context, float x, float y) {
-        this.speed = new Speed();
-        this.x=x;
-        this.y=y;
-        this.bitmap=Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.arrow), 60, 60, false);
+         this.x=x;
+         this.y=y;
+         this.bitmap=Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.arrow), 60, 60, false);
          this.isFly=false;
+         this.isHit=false;
+         this.isMiss=false;
     }
     public  void update(){
         if(isFly) {
-            speed.setXv((enemy.getX() - x) /9);
-            speed.setYv((enemy.getY() - y)/9);
-            x = (int) (x + speed.getXv());
-            y = (int) (y + speed.getYv());
-            if (x >= (enemy.getX() - enemy.getBitmap().getWidth() / 2) &&
-                    (x <= (enemy.getX() + enemy.getBitmap().getWidth() / 2))) {
-                if (y >= (enemy.getY() - enemy.getBitmap().getHeight() / 2) &&
-                        (y <= (enemy.getY() + enemy.getBitmap().getHeight() / 2))) {
-                    isFly=false;
+            float k=(float) Math.sqrt(Math.pow(enemy.getX()-x,2)+Math.pow(enemy.getY()-y,2));
+
+            x =  (x + (enemy.getX()-x)*7/k);
+            y =  (y + (enemy.getY()-y)*7/k);
+            if (x >= (enemy.getX() - 1.2*enemy.getBitmap().getWidth() ) &&
+                    (x <= (enemy.getX() + 1.2*enemy.getBitmap().getWidth() ))) {
+                if (y >= (enemy.getY() - 1.2*enemy.getBitmap().getHeight() ) &&
+                        (y <= (enemy.getY() + 1.2*enemy.getBitmap().getHeight() ))) {
+                    isHit=true;
+                     isFly=false;
+
+
+
+
+
                 }
             }
         }
@@ -65,18 +75,12 @@ public class Arrow {
                 m.preRotate(90,bitmap.getWidth()/2,bitmap.getHeight()/2);
             }*/
             if(((enemy.getX()-x))>=0) {
-                m.preRotate((float) Math.toDegrees(Math.atan((enemy.getY() - y) / (enemy.getX() - x)))-45, bitmap.getWidth() / 2, bitmap.getHeight() / 2);
+                m.preRotate((float) Math.toDegrees(Math.atan((enemy.getY() - y) / (enemy.getX() - x)))-45, 0, 0);
             }
             else{
-                m.preRotate((float) Math.toDegrees(Math.atan((enemy.getY() - y) / (enemy.getX() - x)))+135, bitmap.getWidth() / 2, bitmap.getHeight() / 2);
-
-
-            }
+                m.preRotate((float) Math.toDegrees(Math.atan((enemy.getY() - y) / (enemy.getX() - x)))+135, 0, 0);
+                }
             canvas.drawBitmap(bitmap,m,null);
         }
-
     }
-
-
-
 }
