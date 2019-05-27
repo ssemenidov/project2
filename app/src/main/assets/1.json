@@ -1,5 +1,5 @@
 {
-  "bitmap":"Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2), view.getWidth(), view.getHeight(), false)",
+  "filename":"map2.jpg",
   "towerLands": [
     {
       "context": "view.getContext",

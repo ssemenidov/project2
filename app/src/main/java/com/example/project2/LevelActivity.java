@@ -1,5 +1,8 @@
 package com.example.project2;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -31,8 +34,8 @@ public class LevelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*view=new MainView(this,map);
-
+        view=new MainView(this,map);
+     /*
          arguments = getIntent().getExtras();
          maps=new ArrayList<>();
         towerLands=new ArrayList<>();
@@ -53,24 +56,33 @@ public class LevelActivity extends AppCompatActivity {
 
             enemiesvave.get(0).add(new Enemy1(view.getContext(),-90*i,100));
             enemiesvave.get(1).add(new Enemy1(view.getContext(),-90*i,100));}
-        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2), view.getWidth(), view.getHeight(), false)
-        ,towerLands,30,250,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 50, 50, false)),enemiesvave,rotatepoints));
-        */
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2), 720, 1080, false)
+        ,towerLands,30,250,new Trigger(50, 100, Bitmap.c
+        reateScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 50, 50, false)),enemiesvave,rotatepoints));
+       */
         Gson gson =new Gson();
         try {
-            InputStream stream=getAssets().open("1.json");
+            InputStream stream= getAssets().open("1.json");
             InputStreamReader reader=new InputStreamReader(stream);
-
             map=gson.fromJson(reader,Map.class);
+
             view.setMap(map);
             setContentView(view);
+            Log.i(TAG,"file");
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
 
-        //arguments.getInt("level");
-        //map= maps.get(arguments.getInt("level")-1);
 
+
+
+
+
+
+        /*arguments.getInt("level");
+        map= maps.get(arguments.getInt("level")-1);
+        view.setMap(map);
+        setContentView(view);*/
 
     }
     @Override

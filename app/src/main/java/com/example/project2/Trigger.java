@@ -22,17 +22,17 @@ public class Trigger {
         this.x = x;
         this.y = y;
         this.bitmap = bitmap;
-        this.touched= -1;
+        this.touched= 0;
     }
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, x-(bitmap.getWidth()/2),y-(bitmap.getHeight()/2), null);
     }
     public void handleActionDown(double eventX, double eventY) {
-        if (touched==-1){
+        if (touched==0){
         if (eventX >= (x - bitmap.getWidth() / 2) &&
                 (eventX <= (x + bitmap.getWidth() / 2))) {
             if (eventY >= (y - bitmap.getHeight() / 2) &&
                     (eventY <= (y + bitmap.getHeight() / 2))) {
-                touched=0;
+                touched=1;
             } } } }
 }

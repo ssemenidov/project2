@@ -1,15 +1,24 @@
 package com.example.project2;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.nfc.Tag;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Map {
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    private  Context context;
+    private String filename;
     private Bitmap bitmap;
     private int x;
     private int y;
@@ -19,11 +28,12 @@ public class Map {
     private Trigger trigger;
     private static final String TAG = "MyApp";
     private ArrayList<TowerLand> towerLands;
-    private ArrayList<ArrayList<Enemy>> enemiesvave;
+    private ArrayList<ArrayList<Enemy1>> enemiesvave;
     private ArrayList<Rotatepoints> rotatepoints;
 
-    public Map(Bitmap bitmap, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) {
-        this.bitmap = bitmap;
+    public Map(Context context,String filename, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy1>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) throws IOException {
+        this.context=context;
+        this.bitmap = BitmapFactory.decodeStream(.getAssets().open(filename));
         this.x = 0;
         this.y = 0;
         this.towerLands=towerLands;
@@ -36,8 +46,8 @@ public class Map {
 
 
     }
-    public void setEnemiesvave(ArrayList<ArrayList<Enemy>> enemiesvave) {this.enemiesvave = enemiesvave;}
-    public ArrayList<ArrayList<Enemy>> getEnemiesvave() {return enemiesvave;}
+    public void setEnemiesvave(ArrayList<ArrayList<Enemy1>> enemiesvave) {this.enemiesvave = enemiesvave;}
+    public ArrayList<ArrayList<Enemy1>> getEnemiesvave() {return enemiesvave;}
     public Bitmap getBitmap() { return bitmap; }
     public int getX() { return x; }
     public int getY() { return y; }
