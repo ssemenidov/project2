@@ -33,7 +33,7 @@ public class Map {
 
     public Map(Context context,String filename, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy1>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) throws IOException {
         this.context=context;
-        this.bitmap = BitmapFactory.decodeStream(.getAssets().open(filename));
+        this.bitmap = BitmapFactory.decodeStream(context.getAssets().open(filename));
         this.x = 0;
         this.y = 0;
         this.towerLands=towerLands;
