@@ -13,11 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Map {
-    public void setContext(Context context) {
-        this.context = context;
-    }
 
-    private  Context context;
     private String filename;
     private Bitmap bitmap;
     private int x;
@@ -31,9 +27,12 @@ public class Map {
     private ArrayList<ArrayList<Enemy1>> enemiesvave;
     private ArrayList<Rotatepoints> rotatepoints;
 
-    public Map(Context context,String filename, ArrayList<TowerLand> towerLands,int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy1>> enemiesvave,ArrayList<Rotatepoints> rotatepoints) throws IOException {
-        this.context=context;
-        this.bitmap = BitmapFactory.decodeStream(context.getAssets().open(filename));
+    public String getFilename() {
+        return filename;
+    }
+
+    public Map(String filename, ArrayList<TowerLand> towerLands, int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy1>> enemiesvave, ArrayList<Rotatepoints> rotatepoints) throws IOException {
+        this.filename=filename;
         this.x = 0;
         this.y = 0;
         this.towerLands=towerLands;
@@ -42,7 +41,7 @@ public class Map {
         this.trigger=trigger;
         this.enemiesvave=enemiesvave;
         this.rotatepoints=rotatepoints;
-         i=0;
+        i=0;
 
 
     }

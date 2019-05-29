@@ -62,10 +62,8 @@ public class LevelActivity extends AppCompatActivity {
        */
         Gson gson =new Gson();
         try {
-            InputStream stream= getAssets().open("1.json");
-            InputStreamReader reader=new InputStreamReader(stream);
-            map=gson.fromJson(reader,Map.class);
-
+            map=gson.fromJson(new InputStreamReader(getAssets().open("1.json")),Map.class);
+            map.setBitmap( BitmapFactory.decodeStream(getAssets().open(map.getFilename())));
             view.setMap(map);
             setContentView(view);
             Log.i(TAG,"file");
