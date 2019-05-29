@@ -13,26 +13,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Map {
-
-    private String filename;
     private Bitmap bitmap;
     private int x;
     private int y;
     private int lives;
     private int money;
-    private int i;
     private Trigger trigger;
     private static final String TAG = "MyApp";
     private ArrayList<TowerLand> towerLands;
-    private ArrayList<ArrayList<Enemy1>> enemiesvave;
+    private ArrayList<ArrayList<Enemy>> enemiesvave;
     private ArrayList<Rotatepoints> rotatepoints;
 
-    public String getFilename() {
-        return filename;
-    }
 
-    public Map(String filename, ArrayList<TowerLand> towerLands, int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy1>> enemiesvave, ArrayList<Rotatepoints> rotatepoints) throws IOException {
-        this.filename=filename;
+    public Map(Bitmap bitmap, ArrayList<TowerLand> towerLands, int lives, int money, Trigger trigger, ArrayList<ArrayList<Enemy>> enemiesvave, ArrayList<Rotatepoints> rotatepoints) {
         this.x = 0;
         this.y = 0;
         this.towerLands=towerLands;
@@ -41,12 +34,13 @@ public class Map {
         this.trigger=trigger;
         this.enemiesvave=enemiesvave;
         this.rotatepoints=rotatepoints;
-        i=0;
+        this.bitmap=bitmap;
+
 
 
     }
-    public void setEnemiesvave(ArrayList<ArrayList<Enemy1>> enemiesvave) {this.enemiesvave = enemiesvave;}
-    public ArrayList<ArrayList<Enemy1>> getEnemiesvave() {return enemiesvave;}
+    public void setEnemiesvave(ArrayList<ArrayList<Enemy>> enemiesvave) {this.enemiesvave = enemiesvave;}
+    public ArrayList<ArrayList<Enemy>> getEnemiesvave() {return enemiesvave;}
     public Bitmap getBitmap() { return bitmap; }
     public int getX() { return x; }
     public int getY() { return y; }

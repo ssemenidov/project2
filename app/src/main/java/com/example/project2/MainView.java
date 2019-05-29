@@ -102,7 +102,7 @@ public class MainView extends SurfaceView implements
         if (map.getTrigger().getTouched() == 1) {
             countvave += 1;
             enemiesLive.addAll(map.getEnemiesvave().get(countvave - 1));
-            map.getTrigger().setTouched(1);
+            map.getTrigger().setTouched(-1);
             start = true;
             Log.i(TAG,"start");
         } else if (enemiesLive.size() == 0) {
@@ -188,7 +188,7 @@ public class MainView extends SurfaceView implements
     @Override
     protected void onDraw(Canvas canvas) {
         map.drawmap(canvas);
-        /*if (map.getTrigger().getTouched()==0){ map.getTrigger().draw(canvas);}
+        if (map.getTrigger().getTouched()==0){ map.getTrigger().draw(canvas);}
         for (Enemy i :enemiesDead) {
             Log.i(TAG,enemiesDead.size()+"");
             if ((new Date().getTime()-i.getTimedead())<5000L){
@@ -205,6 +205,6 @@ public class MainView extends SurfaceView implements
         for (TowerLand i:map.getTowerLands()) {
             if (i.getTouched()>-1){
             i.draw(canvas);
-            }}*/
+            }}
     }
 }
