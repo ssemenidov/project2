@@ -29,6 +29,7 @@ public class LevelActivity extends AppCompatActivity {
     private  ArrayList<Rotatepoints> rotatepoints;
     ArrayList<Map> maps;
     Bundle arguments ;
+    ///////
 
     private static final String TAG = "MyApp";
     @Override
