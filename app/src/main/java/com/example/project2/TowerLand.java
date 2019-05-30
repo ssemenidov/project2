@@ -22,7 +22,7 @@ public class TowerLand {
     public int getY() { return y; }
     public int getTouched() { return touched; }
     public TowerLand(Context context, int x, int y) {
-        this.bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.towerland), 110, 70, false);
+        this.bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.land), 110, 100, false);
         this.x = x;
         this.y = y;
         this.touched =0;

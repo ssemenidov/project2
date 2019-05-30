@@ -18,18 +18,20 @@ public class Enemy {
     private int speedmax;
     private Speed speed;
     private  int hp;
+    private  int maxhp;
     private boolean win;
     private int price;
     private  long timedead;
     private static final String TAG = "MyApp";
 
-    public Enemy(Bitmap bitmap, Bitmap bitmapdead, int x, int y, int speedmax, int hp, int price) {
+    public Enemy(Bitmap bitmap, Bitmap bitmapdead, int x, int y, int speedmax, int maxhp, int price) {
         this.bitmapdead=bitmapdead;
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
         this.speedmax=speedmax;
-        this.hp=hp;
+        this.maxhp=maxhp;
+        this.hp=maxhp;
         this.speed=new Speed(speedmax,0);
         this.win=false;
         this.price=price;
@@ -90,7 +92,7 @@ public class Enemy {
         paintstroke.setStrokeWidth(3);
         paintstroke.setColor(Color.BLACK);
         Rect rect=new Rect();
-        rect.set((int)x-(bitmap.getWidth()/2),(int)y-(bitmap.getHeight()/2)-10,(int)x-(bitmap.getWidth()/2)+bitmap.getWidth()*hp/3,(int)y-(bitmap.getHeight()/2));
+        rect.set((int)x-(bitmap.getWidth()/2),(int)y-(bitmap.getHeight()/2)-10,(int)x-(bitmap.getWidth()/2)+bitmap.getWidth()*hp/maxhp,(int)y-(bitmap.getHeight()/2));
         canvas.drawBitmap(bitmap, x-(bitmap.getWidth()/2), y-(bitmap.getHeight()/2),null);
         canvas.drawRect(rect,paint);
         canvas.drawRect(rect,paintstroke);

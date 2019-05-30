@@ -26,6 +26,8 @@ public class MainView extends SurfaceView implements
     private ArrayList<Tower> towers;
     private int countvave;
     private boolean start;
+    private boolean flagb;
+    private int flag;
     private static final String TAG = "MyApp";
 
     public MainView(Context context, Map map) {
@@ -101,15 +103,26 @@ public class MainView extends SurfaceView implements
     public void update() {
         if (map.getTrigger().getTouched() == 1) {
             countvave += 1;
-            enemiesLive.addAll(map.getEnemiesvave().get(countvave - 1));
+            //enemiesLive.addAll(map.getEnemiesvave().get(countvave - 1));
             map.getTrigger().setTouched(-1);
             start = true;
+            flag=0;
+            flagb=true;
+
             Log.i(TAG,"start");
         } else if (enemiesLive.size() == 0) {
             start = false;
             map.getTrigger().setTouched(0);
         }
         if (start) {
+            if (flagb){
+            enemiesLive.add(map.getEnemiesvave().get(countvave - 1).get(flag));
+            flagb=false;
+            }
+            if ((map.getEnemiesvave().get(countvave - 1).get(flag).getX()>10)&&(flag<map.getEnemiesvave().get(countvave - 1).size()-1)){
+                flag++;
+                flagb=true;
+            }
 
             for (int i = 0; i < enemiesLive.size(); i++) {
                 Enemy enemy = enemiesLive.get(i);
