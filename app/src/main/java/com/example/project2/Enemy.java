@@ -92,6 +92,7 @@ public class Enemy {
         paint.setColor(Color.RED);
         paint.setStrokeWidth(10);
 
+        
         paintstroke.setStyle(Paint.Style.STROKE);
         paintstroke.setStrokeWidth(3);
         paintstroke.setColor(Color.BLACK);
