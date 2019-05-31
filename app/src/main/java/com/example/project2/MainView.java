@@ -211,7 +211,7 @@ public class MainView extends SurfaceView implements
     protected void onDraw(Canvas canvas) {
         Log.i(TAG, map.getEnemiesvave().size()+" "+countvave+" "+ enemiesLive.size());
         if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
-            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 200, false),200,200,null);
+            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 100, false),200,200,null);
 
         }
         map.drawmap(canvas);
