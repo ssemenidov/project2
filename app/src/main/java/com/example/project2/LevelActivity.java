@@ -20,6 +20,7 @@ public class LevelActivity extends AppCompatActivity {
     private ArrayList<TowerLand> towerLands;
     private ArrayList<ArrayList<Enemy>> enemiesvave;
     private  ArrayList<Rotatepoints> rotatepoints;
+    private
     ArrayList<Map> maps;
     private int flag;
     Bundle arguments ;
@@ -59,6 +60,16 @@ public class LevelActivity extends AppCompatActivity {
 
         maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
         ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
+                ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
+                ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
+                ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
+                ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
+        maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
+                ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
 
 
         /*Gson gson =new Gson();

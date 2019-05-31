@@ -1,5 +1,6 @@
 package com.example.project2;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -85,6 +86,12 @@ public class MainView extends SurfaceView implements
     }
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN){
+            if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
+                if(( event.getY()>200)&& ( event.getY()<400)){
+                    thread.setRunning(false);
+                    ((Activity) getContext()).finish();
+                }
+            }
 
             for (TowerLand i : map.getTowerLands()) {
                 onTouchEventlandtower(event, i);
@@ -113,6 +120,7 @@ public class MainView extends SurfaceView implements
         } else if (enemiesLive.size() == 0) {
             start = false;
             map.getTrigger().setTouched(0);
+
         }
         if (start) {
             if (flagb){
@@ -198,12 +206,17 @@ public class MainView extends SurfaceView implements
 
 
     }
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.i(TAG, map.getEnemiesvave().size()+" "+countvave+" "+ enemiesLive.size());
+        if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
+            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 200, false),200,200,null);
+
+        }
         map.drawmap(canvas);
         if (map.getTrigger().getTouched()==0){ map.getTrigger().draw(canvas);}
         for (Enemy i :enemiesDead) {
-            Log.i(TAG,enemiesDead.size()+"");
             if ((new Date().getTime()-i.getTimedead())<5000L){
                 i.drawdead(canvas);
             }
@@ -219,5 +232,9 @@ public class MainView extends SurfaceView implements
             if (i.getTouched()>-1){
             i.draw(canvas);
             }}
+        if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
+            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 300, false),200,200,null);
+
+        }
     }
 }
