@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class LevelActivity extends AppCompatActivity {
     private MainView view;
     private Map map;
-    private FileInputStream stream;
-    private InputStreamReader reader;
     private ArrayList<TowerLand> towerLands;
     private ArrayList<ArrayList<Enemy>> enemiesvave;
     private  ArrayList<Rotatepoints> rotatepoints;
@@ -71,17 +69,6 @@ public class LevelActivity extends AppCompatActivity {
         maps.add( new Map(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map2),720,1080, /*view.getResources().getDisplayMetrics().widthPixels, view.getResources().getDisplayMetrics().heightPixels*/ false)
                 ,towerLands,30,150,new Trigger(50, 100, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.trigger), 80, 60, false)),enemiesvave,rotatepoints));
 
-
-        /*Gson gson =new Gson();
-        try {
-            map=gson.fromJson(new InputStreamReader(getAssets().open("1.json")),Map.class);
-            map.setBitmap( BitmapFactory.decodeStream(getAssets().open(map.getFilename())));
-            view.setMap(map);
-            setContentView(view);
-            Log.i(TAG,"file");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         arguments.getInt("level");
         map= maps.get(arguments.getInt("level")-1);
         view.setMap(map);

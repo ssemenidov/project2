@@ -230,7 +230,7 @@ public class MainView extends SurfaceView implements
             i.draw(canvas);
             }}
         if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
-            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 100, false),200,200,null);
+            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 100, false),210,300,null);
 
         }
     }
