@@ -9,7 +9,7 @@ public class Enemy1 extends Enemy  {
     public Enemy1(Context context ,int x, int y) {
         super(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.goblin3), 70, 70, false),
                 Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.deadgoblin3), 70, 80, false),
-        x,y,4,3,7);
+        x,y,3,3,7);
 
     }
 

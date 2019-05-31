@@ -1,5 +1,6 @@
 package com.example.project2;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -26,6 +27,8 @@ public class MainView extends SurfaceView implements
     private ArrayList<Tower> towers;
     private int countvave;
     private boolean start;
+    private boolean flagb;
+    private int flag;
     private static final String TAG = "MyApp";
 
     public MainView(Context context, Map map) {
@@ -83,6 +86,12 @@ public class MainView extends SurfaceView implements
     }
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN){
+            if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
+                if(( event.getY()>200)&& ( event.getY()<400)){
+                    thread.setRunning(false);
+                    ((Activity) getContext()).finish();
+                }
+            }
 
             for (TowerLand i : map.getTowerLands()) {
                 onTouchEventlandtower(event, i);
@@ -101,15 +110,27 @@ public class MainView extends SurfaceView implements
     public void update() {
         if (map.getTrigger().getTouched() == 1) {
             countvave += 1;
-            enemiesLive.addAll(map.getEnemiesvave().get(countvave - 1));
-            map.getTrigger().setTouched(1);
+            //enemiesLive.addAll(map.getEnemiesvave().get(countvave - 1));
+            map.getTrigger().setTouched(-1);
             start = true;
+            flag=0;
+            flagb=true;
+
             Log.i(TAG,"start");
         } else if (enemiesLive.size() == 0) {
             start = false;
             map.getTrigger().setTouched(0);
+
         }
         if (start) {
+            if (flagb){
+            enemiesLive.add(map.getEnemiesvave().get(countvave - 1).get(flag));
+            flagb=false;
+            }
+            if ((map.getEnemiesvave().get(countvave - 1).get(flag).getX()>10)&&(flag<map.getEnemiesvave().get(countvave - 1).size()-1)){
+                flag++;
+                flagb=true;
+            }
 
             for (int i = 0; i < enemiesLive.size(); i++) {
                 Enemy enemy = enemiesLive.get(i);
@@ -185,12 +206,14 @@ public class MainView extends SurfaceView implements
 
 
     }
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.i(TAG, map.getEnemiesvave().size()+" "+countvave+" "+ enemiesLive.size());
+
         map.drawmap(canvas);
-        /*if (map.getTrigger().getTouched()==0){ map.getTrigger().draw(canvas);}
+        if (map.getTrigger().getTouched()==0){ map.getTrigger().draw(canvas);}
         for (Enemy i :enemiesDead) {
-            Log.i(TAG,enemiesDead.size()+"");
             if ((new Date().getTime()-i.getTimedead())<5000L){
                 i.drawdead(canvas);
             }
@@ -205,6 +228,10 @@ public class MainView extends SurfaceView implements
         for (TowerLand i:map.getTowerLands()) {
             if (i.getTouched()>-1){
             i.draw(canvas);
-            }}*/
+            }}
+        if ((countvave)==map.getEnemiesvave().size()&& (enemiesLive.size() == 0)){
+            canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.exit), 300, 100, false),210,300,null);
+
+        }
     }
 }

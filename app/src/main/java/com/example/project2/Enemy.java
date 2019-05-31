@@ -2,8 +2,10 @@ package com.example.project2;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
@@ -18,18 +20,20 @@ public class Enemy {
     private int speedmax;
     private Speed speed;
     private  int hp;
+    private  int maxhp;
     private boolean win;
     private int price;
     private  long timedead;
     private static final String TAG = "MyApp";
 
-    public Enemy(Bitmap bitmap, Bitmap bitmapdead, int x, int y, int speedmax, int hp, int price) {
+    public Enemy(Bitmap bitmap, Bitmap bitmapdead, int x, int y, int speedmax, int maxhp, int price) {
         this.bitmapdead=bitmapdead;
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
         this.speedmax=speedmax;
-        this.hp=hp;
+        this.maxhp=maxhp;
+        this.hp=maxhp;
         this.speed=new Speed(speedmax,0);
         this.win=false;
         this.price=price;
@@ -81,17 +85,25 @@ public class Enemy {
     }
 
     public void  draw(Canvas canvas){
+        Matrix m =new Matrix();
+        m.setTranslate(x-(bitmap.getWidth()/2),y-(bitmap.getHeight()/2));
         Paint paint=new Paint();
         Paint paintstroke=new Paint();
         paint.setColor(Color.RED);
         paint.setStrokeWidth(10);
 
+
         paintstroke.setStyle(Paint.Style.STROKE);
         paintstroke.setStrokeWidth(3);
         paintstroke.setColor(Color.BLACK);
         Rect rect=new Rect();
-        rect.set((int)x-(bitmap.getWidth()/2),(int)y-(bitmap.getHeight()/2)-10,(int)x-(bitmap.getWidth()/2)+bitmap.getWidth()*hp/3,(int)y-(bitmap.getHeight()/2));
-        canvas.drawBitmap(bitmap, x-(bitmap.getWidth()/2), y-(bitmap.getHeight()/2),null);
+        rect.set((int)x-(bitmap.getWidth()/2),(int)y-(bitmap.getHeight()/2)-10,(int)x-(bitmap.getWidth()/2)+bitmap.getWidth()*hp/maxhp,(int)y-(bitmap.getHeight()/2));
+        if (speed.getXv()<0){
+            m.setTranslate(x+(bitmap.getWidth()/2),y-(bitmap.getHeight()/2));
+            m.preScale(-1,1);
+
+        }
+        canvas.drawBitmap(bitmap,m,null);
         canvas.drawRect(rect,paint);
         canvas.drawRect(rect,paintstroke);
     }
