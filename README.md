@@ -13,4 +13,4 @@
 - Реализация действий на сцене
 - Наполнение контентом
 
-Презентация - https://disk.yandex.ru/i/G7qMneCgEjUhbQ
+Презентация - https://disk.yandex.ru/i/5VNAjhw7NDxoVw
